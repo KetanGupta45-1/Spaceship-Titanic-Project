@@ -1,0 +1,52 @@
+Spaceship Titanic Project Documentation
+🚀 Overview
+This project is a solution to Kaggle’s Spaceship Titanic competition, which involves predicting whether passengers were transported to an alternate dimension based on various passenger details.
+
+📂 Dataset Description
+The dataset consists of several features about passengers, including:
+
+PassengerId: A unique identifier for each passenger (used for feature engineering).
+HomePlanet: The planet the passenger originally boarded from.
+CryoSleep: Whether the passenger chose cryogenic sleep.
+Cabin: The passenger’s cabin information (used for feature engineering).
+Destination: The intended destination of the passenger.
+Age: Age of the passenger.
+VIP: Whether the passenger was a VIP.
+RoomService, FoodCourt, ShoppingMall, Spa, VRDeck: Spending on different amenities.
+Name: Passenger’s name.
+Transported: The target variable (binary classification).
+🔄 Data Preprocessing
+Feature Engineering
+Splitting PassengerId: PassengerId was split into group ID and individual ID to identify possible families or groups traveling together. This helped in identifying patterns where passengers from the same group were transported similarly.
+Splitting Cabin: The Cabin feature was split into Deck, Number, and Side to extract meaningful insights. For instance, some decks or sides might be more associated with transportation.
+Handling Missing Values
+Categorical Features: Used mode imputation or assigned a new category like "Unknown."
+Numerical Features: Used median imputation for numerical values like Age and spending features.
+CryoSleep and VIP: Used boolean encoding and imputation based on correlations with other features.
+Correlation Analysis
+A correlation matrix was used to check relationships between features. Features with high correlation (collinearity) were either merged or removed to avoid redundancy and improve model generalization. This helped reduce noise and improve performance.
+Preprocessing in One Go
+A single pipeline was created to handle all preprocessing steps (imputation, encoding, feature engineering, and scaling) efficiently. This ensured consistency in both training and testing datasets, preventing data leakage and unnecessary repetition of steps.
+🏆 Modeling Approach
+Model Selection
+CatBoost Classifier: Chosen for its ability to handle categorical variables efficiently and provide strong performance with minimal hyperparameter tuning.
+Ensemble Model: Combined CatBoost with other models (like Random Forest and Gradient Boosting) to improve overall predictive accuracy. The final predictions were weighted averages of multiple models, leveraging their strengths.
+Hyperparameter Tuning
+Used GridSearchCV to fine-tune parameters for optimal performance.
+📊 Performance Evaluation
+The best model achieved:
+✅ Accuracy: 80.009%
+✅ Leaderboard Rank: #632
+
+🔥 Challenges & Learnings
+Feature Engineering: Splitting PassengerId and Cabin significantly improved model performance.
+Handling Missing Data: Different imputation strategies were necessary for numerical vs. categorical variables.
+Ensembling & Tuning: Combining multiple models improved generalization and performance.
+🚀 Future Improvements
+More Advanced Feature Engineering: Further analysis of Cabin and Passenger Group patterns.
+Stacking Models: Instead of simple ensembling, using a meta-model to combine predictions.
+Exploring Deep Learning: Testing neural networks to capture complex interactions.
+📌 Repository Contents
+Spaceship_Titanic_final.ipynb: Complete Jupyter notebook with data preprocessing, feature engineering, and model training.
+train.csv & test.csv: Datasets used in training and testing.
+README.md: Project documentation.
